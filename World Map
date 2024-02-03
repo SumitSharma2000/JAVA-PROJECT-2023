@@ -1,0 +1,44 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class WorldMap extends JFrame {
+    public WorldMap() {
+        setTitle("World Map");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        WorldPanel worldPanel = new WorldPanel();
+        add(worldPanel);
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new WorldMap());
+    }
+}
+
+class WorldPanel extends JPanel {
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.BLACK);
+
+        // Draw major country outlines
+        g2d.drawRect(50, 50, 100, 100);  // Example: Draw a rectangle for a country
+        g2d.drawRect(200, 200, 150, 100);  // Example: Draw another rectangle for a country
+        // Add more country outlines here...
+
+        // Example: Adding more countries
+        drawCountry(g2d, "United States", 100, 200, 300, 150);
+        drawCountry(g2d, "Russia", 400, 100, 200, 400);
+        drawCountry(g2d, "China", 600, 300, 250, 200);
+    }
+
+    private void drawCountry(Graphics2D g2d, String name, int x, int y, int width, int height) {
+        g2d.drawRect(x, y, width, height);
+        g2d.drawString(name, x + width / 2, y + height / 2);
+    }
+}
